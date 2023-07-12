@@ -1,0 +1,70 @@
+<div class="step-text">
+<h5 id="description">Description</h5>
+<p>You have <span class="math-tex">\(k\)</span> barbers in our barbershop, clients may come at any time, and barbers may serve them for an arbitrary amount of time as well. We've asked the administrator to register each visitor's arrival time and ask at the exit how long they were served.</p>
+<p>Using this data, restore the waiting time for each visitor.</p>
+<h5 id="objectives">Objectives</h5>
+<p>Write a program that takes the data on arrival and service times, computes the waiting time of every visitor, and prints them in separate lines.</p>
+<p>Input format:</p>
+<p>The first line contains the number of barbers <span class="math-tex">\(k\)</span> and the number of clients <span class="math-tex">\(m\)</span>. In the next <span class="math-tex">\(n\)</span> lines, there are pairs <span class="math-tex">\(a_i\)</span>, <span class="math-tex">\(s_i\)</span> separated by a space, where <span class="math-tex">\(a_i\)</span> and <span class="math-tex">\(s_i\)</span> are arrival times (in minutes, after 9 am) and the service time (in minutes) of <code class="java">i</code>-th visitor.</p>
+<p>Output format:</p>
+<p>The output consists of <span class="math-tex">\(n\)</span> lines, where the <span class="math-tex">\(i\)</span>-th line contains the waiting time of the <code class="java">i</code>-th client.</p>
+<h5 id="examples">Examples</h5>
+<p><strong>Example 1: </strong><em>this is example 2 from the previous stage. Note that the waiting times here and there are the same.</em></p>
+<p><em>Input:</em></p>
+<pre><code class="language-no-highlight">2 17
+0 55
+25 65
+50 55
+75 65
+100 55
+125 65
+150 55
+175 55
+200 65
+225 55
+250 65
+275 55
+300 65
+325 55
+350 65
+375 55
+400 65</code></pre>
+<p><em>Output:</em></p>
+<pre><code class="language-no-highlight">0
+0
+5
+15
+10
+30
+15
+45
+20
+50
+35
+55
+50
+60
+65
+65
+80</code></pre>
+<p><strong>Example 2:</strong></p>
+<p><em>Input:</em></p>
+<pre><code class="language-no-highlight">4 8
+0 68
+10 78
+20 88
+30 98
+40 55
+50 65
+60 75
+70 85</code></pre>
+<p><em>Output:</em></p>
+<pre><code class="language-no-highlight">0
+0
+0
+0
+28
+38
+48
+53</code></pre>
+</div>

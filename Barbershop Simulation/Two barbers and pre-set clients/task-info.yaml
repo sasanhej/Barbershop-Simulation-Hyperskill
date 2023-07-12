@@ -1,0 +1,117 @@
+type: edu
+files:
+- name: test/__init__.py
+  visible: false
+  learner_created: false
+- name: test/tests.py
+  visible: false
+  text: |-
+    from hstest import StageTest, CheckResult, dynamic_test, TestedProgram
+
+
+    class BarbershopSimulation(StageTest):
+
+        @staticmethod
+        def check_answer_length(user_output_length, correct_answer_length):
+            if not user_output_length:
+                return CheckResult.wrong('Your program did not print any results.')
+            elif user_output_length < correct_answer_length:
+                return CheckResult.wrong(f'Your program should print {correct_answer_length} lines '
+                                         f'but {user_output_length} line(s) were found in the output.\n'
+                                         'Make sure you printed the data for each visitor on a separate line.')
+            else:
+                return CheckResult.wrong('Your program printed more lines than expected: '
+                                         f'there should be {correct_answer_length} lines '
+                                         f'but {user_output_length} were found in the output.')
+
+        @staticmethod
+        def check_answer_values(user_output, correct_output):
+            for j, (output_line, correct_line) in enumerate(zip(user_output, correct_output)):
+                output_line = list(map(int, output_line.split()))
+                if len(output_line) != 3:
+                    return CheckResult.wrong('Each line in the output should contain only 3 numbers: '
+                                             'the arrival time, the waiting time and the master for a visitor.')
+                elif output_line[0] != correct_line[0]:
+                    return CheckResult.wrong(f'Incorrect arrival time for the visitor {j + 1}.')
+                elif output_line[1] != correct_line[1]:
+                    return CheckResult.wrong(f'Incorrect waiting time for the visitor {j + 1}.')
+                elif output_line[2] != correct_line[2]:
+                    return CheckResult.wrong(f'Incorrect master chosen for the visitor {j + 1}.')
+            return CheckResult.correct()
+
+        @dynamic_test
+        def test1(self):
+            main = TestedProgram()
+            main.start()
+            output = main.execute('60 100 20').splitlines()
+            correct_output = [[0, 0, 1], [60, 0, 2], [120, 0, 2], [180, 0, 1], [240, 0, 2], [300, 0, 2], [360, 0, 1]]
+
+            while '' in output:
+                output.remove('')
+            if len(output) != len(correct_output):
+                return self.check_answer_length(len(output), len(correct_output))
+            return self.check_answer_values(output, correct_output)
+
+        @dynamic_test
+        def test2(self):
+            main = TestedProgram()
+            main.start()
+            output = main.execute('25 55 65').splitlines()
+            correct_output = [[0, 0, 1], [25, 0, 2,], [50, 5, 1], [75, 15, 2], [100, 10, 1], [125, 30, 2], [150, 15, 1],
+                              [175, 45, 1], [200, 20, 2], [225, 50, 1], [250, 35, 2], [275, 55, 1], [300, 50, 2],
+                              [325, 60, 1], [350, 65, 2], [375, 65, 1], [400, 80, 2]]
+
+            while '' in output:
+                output.remove('')
+            if len(output) != len(correct_output):
+                return self.check_answer_length(len(output), len(correct_output))
+            return self.check_answer_values(output, correct_output)
+
+        @dynamic_test
+        def test3(self):
+            main = TestedProgram()
+            main.start()
+            output = main.execute('70 40 35').splitlines()
+            correct_output = [[0, 0, 1], [70, 0, 2], [140, 0, 1], [210, 0, 2], [280, 0, 1], [350, 0, 2]]
+
+            while '' in output:
+                output.remove('')
+            if len(output) != len(correct_output):
+                return self.check_answer_length(len(output), len(correct_output))
+            return self.check_answer_values(output, correct_output)
+
+        @dynamic_test
+        def test4(self):
+            main = TestedProgram()
+            main.start()
+            output = main.execute('100 100 60').splitlines()
+            correct_output = [[0, 0, 1], [100, 0, 2], [200, 0, 1], [300, 0, 2], [400, 0, 1]]
+
+            while '' in output:
+                output.remove('')
+            if len(output) != len(correct_output):
+                return self.check_answer_length(len(output), len(correct_output))
+            return self.check_answer_values(output, correct_output)
+
+
+    if __name__ == '__main__':
+        BarbershopSimulation().run_tests()
+  learner_created: false
+- name: barbershop_simulation.py
+  visible: true
+  text: print('Hello World!')
+  learner_created: false
+- name: tests.py
+  visible: false
+  text: |
+    from test.tests import BarbershopSimulation
+
+    if __name__ == '__main__':
+        BarbershopSimulation().run_tests()
+  learner_created: false
+- name: test.py
+  visible: true
+  learner_created: true
+feedback_link: https://hyperskill.org/learn/step/28788#comment
+status: Failed
+record: 1

@@ -1,0 +1,112 @@
+type: edu
+files:
+- name: barbershop_simulation.py
+  visible: true
+  text: print('Hello World!')
+  learner_created: false
+- name: test/__init__.py
+  visible: false
+  learner_created: false
+- name: test/tests.py
+  visible: false
+  text: |
+    from hstest import StageTest, CheckResult, dynamic_test, TestedProgram
+
+
+    class BarbershopSimulation(StageTest):
+
+        @staticmethod
+        def check_answer_length(user_output_length, correct_answer_length):
+            if not user_output_length:
+                return CheckResult.wrong('Your program did not print any results.')
+            elif user_output_length < correct_answer_length:
+                return CheckResult.wrong(f'Your program should print {correct_answer_length} lines '
+                                         f'but {user_output_length} line(s) were found in the output.\n'
+                                         'Make sure you printed the data for each visitor on a separate line.')
+            else:
+                return CheckResult.wrong('Your program printed more lines than expected: '
+                                         f'there should be {correct_answer_length} lines '
+                                         f'but {user_output_length} were found in the output.')
+
+        @staticmethod
+        def check_answer_values(user_output, correct_output):
+            for j, (output_line, correct_line) in enumerate(zip(user_output, correct_output)):
+                output_line = list(map(int, output_line.split()))
+                if len(output_line) != 1:
+                    return CheckResult.wrong('Each line in the output should contain only 1 number: '
+                                             'the waiting time for a visitor.')
+                elif output_line[0] != correct_line:
+                    return CheckResult.wrong(f'Incorrect waiting time for the visitor {j + 1}.')
+            return CheckResult.correct()
+
+        @dynamic_test
+        def test1(self):
+            main = TestedProgram()
+            main.start()
+            output = main.execute('2 17\n0 55\n25 65\n50 55\n75 65\n100 55\n125 65\n150 55\n175 55\n200 65\n225 55\n250 65'
+                                  '\n275 55\n300 65\n325 55\n350 65\n375 55\n400 65').splitlines()
+            correct_output = [0, 0, 5, 15, 10, 30, 15, 45, 20, 50, 35, 55, 50, 60, 65, 65, 80]
+
+            while '' in output:
+                output.remove('')
+            if len(output) != len(correct_output):
+                return self.check_answer_length(len(output), len(correct_output))
+            return self.check_answer_values(output, correct_output)
+
+        @dynamic_test
+        def test2(self):
+            main = TestedProgram()
+            main.start()
+            output = main.execute('4 8\n0 68\n10 78\n20 88\n30 98\n40 55\n50 65\n60 75\n70 85').splitlines()
+            correct_output = [0, 0, 0, 0, 28, 38, 48, 53]
+
+            while '' in output:
+                output.remove('')
+            if len(output) != len(correct_output):
+                return self.check_answer_length(len(output), len(correct_output))
+            return self.check_answer_values(output, correct_output)
+
+        @dynamic_test
+        def test3(self):
+            main = TestedProgram()
+            main.start()
+            output = main.execute('3 7\n0 60\n55 20\n60 15\n85 30\n90 20\n120 30\n150 25').splitlines()
+            correct_output = [0, 0, 0, 0, 0, 0, 0]
+
+            while '' in output:
+                output.remove('')
+            if len(output) != len(correct_output):
+                return self.check_answer_length(len(output), len(correct_output))
+            return self.check_answer_values(output, correct_output)
+
+        @dynamic_test
+        def test4(self):
+            main = TestedProgram()
+            main.start()
+            output = main.execute('2 5\n0 30\n5 35\n15 25\n30 15\n50 55').splitlines()
+            correct_output = [0, 0, 15, 10, 5]
+
+            while '' in output:
+                output.remove('')
+            if len(output) != len(correct_output):
+                return self.check_answer_length(len(output), len(correct_output))
+            return self.check_answer_values(output, correct_output)
+
+
+    if __name__ == '__main__':
+        BarbershopSimulation().run_tests()
+  learner_created: false
+- name: tests.py
+  visible: false
+  text: |
+    from test.tests import BarbershopSimulation
+
+    if __name__ == '__main__':
+        BarbershopSimulation().run_tests()
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/28789#comment
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Mon, 22 May 2023 01:06:27 UTC"
+record: 2

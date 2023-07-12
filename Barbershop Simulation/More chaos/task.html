@@ -1,0 +1,49 @@
+<div class="step-text">
+<h5 id="description">Description</h5>
+<p>Finally, let's simulate the data we took as input in the previous two stages! We need to simulate the arrival times of clients and the times it takes our barbers to serve them.</p>
+<p>If we assume that clients come independently at a fixed frequency (<span class="math-tex">\(r\)</span> people per hour on average), we can simulate the time between successive visitors as the <strong>exponential random variable</strong>. So that the average time between two visitors is <span class="math-tex">\(60 / r\)</span> minutes. This is a rare case in real life: for example, clients opt for evening hours, but it is a reasonable starting point.</p>
+<p>The serving time is a bit different. Some come for a shave or a quick trim, while others want an elaborate haircut. These services' exact proportions and distributions depend on the barbershop and a particular barber. It is best to choose the appropriate distribution based on specific data. In this project, we will use the oversimplified model, the <strong>uniform distribution,</strong> from <span class="math-tex">\(a\)</span> to <span class="math-tex">\(b\)</span> minutes for every barber.</p>
+<p>Since we treat the input data as random, all the metrics we calculate in the previous stage also become random. A natural step would be to investigate the behavior of the distributions of metrics depending on the distributions of the input data using histograms/bar plots and various location/scale parameters. In this stage, focus on the following parameters:</p>
+<ul>
+<li>95% quantile of the maximum waiting time — it shows that the maximum waiting time exceeds it on only 5% of days;</li>
+<li>the average closing time delay;</li>
+<li>the probability that the maximum number of visitors in line is more than 5. Imagine there are only five seats in the waiting area, so we want to know the probability that at least one client will not have enough seating today.</li>
+</ul>
+<p>Strictly speaking, all the parameters we want to calculate are uniquely determined by the parameters of the arrival and service time distributions, so it is tempting to derive formulas that would allow us to calculate them accurately. Unfortunately, the model we have built is quite complex, so it does not seem possible to derive these formulas. Instead, we will estimate the required values using<strong> </strong>the<strong> Monte Carlo </strong>method: simulate one day in the barbershop many times, calculate all the metrics for each day, and then aggregate the obtained data.</p>
+<h5 id="objectives">Objectives</h5>
+<p>Write a program that takes as input four numbers (separated by one space):</p>
+<ul>
+<li><span class="math-tex">\(s\)</span>, the average time in minutes between successive visitors,</li>
+<li><span class="math-tex">\(a\)</span>, <span class="math-tex">\(b\)</span>, the lower and upper bounds for service time distribution,</li>
+<li>and the number of barbers <span class="math-tex">\(k\)</span></li>
+</ul>
+<p>and estimates:</p>
+<ul>
+<li>the 95% quantile of the maximum waiting time,</li>
+<li>the average closing time delay,</li>
+<li>the probability that the maximum number of visitors in line is greater than <code class="java">5</code>.</li>
+</ul>
+<p>Use 10000 Monte-Carlo simulations and print them on a separate line.</p>
+<h5 id="examples">Examples</h5>
+<p><strong>Example 1:</strong></p>
+<p><em>Input:</em></p>
+<pre><code class="language-no-highlight">40 20 60 3</code></pre>
+<p>Output:</p>
+<pre><code class="language-no-highlight">27.526220919860876
+17.0126805809495
+9e-05</code></pre>
+<p><strong> Example 2:</strong></p>
+<p><em>Input:</em></p>
+<pre><code class="language-no-highlight">25 20 50 2</code></pre>
+<p><em>Output:</em></p>
+<pre><code class="language-no-highlight">90.86438878354059
+32.28031557552996
+0.05237</code></pre>
+<p><strong>Example 3:</strong></p>
+<p><em>Input:</em></p>
+<pre><code class="language-no-highlight">20 20 50 2</code></pre>
+<p><em>Output:</em></p>
+<pre><code class="language-no-highlight">138.85177868069442
+55.61324280034451
+0.21009</code></pre>
+</div>

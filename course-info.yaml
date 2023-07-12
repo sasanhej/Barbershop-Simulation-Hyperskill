@@ -1,0 +1,15 @@
+type: hyperskill
+title: Barbershop Simulation
+language: English
+summary: "<p>You run a barbershop with several barbers. You're curious about what\
+  \ will happen if one of them quits. Will the workload for other barbers increase?\
+  \ Will the average service time increase? These questions are hard to answer even\
+  \ if visitors come at regular intervals. For a more realistic case, it is even more\
+  \ difficult when clients come at random. In this project, you will simulate the\
+  \ work of a barbershop under various conditions and learn how to analyze the results.</p><br/><br/>Learn\
+  \ more at <a href=\"https://hyperskill.org/projects/348?utm_source=ide&utm_medium=ide&utm_campaign=ide&utm_content=project-card\"\
+  >https://hyperskill.org/projects/348</a>"
+programming_language: Python
+content:
+- Barbershop Simulation
+mode: Study

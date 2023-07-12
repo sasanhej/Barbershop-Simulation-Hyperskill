@@ -1,0 +1,8 @@
+type: framework
+content:
+- Two barbers and pre-set clients
+- More barbers and clients
+- Metrics
+- More chaos
+- One's down
+current_task: 4

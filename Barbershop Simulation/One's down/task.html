@@ -1,0 +1,41 @@
+<div class="step-text">
+<h5 id="description">Description</h5>
+<p>The focal point of running a simulation is that once we have a reasonable model, we can study the phenomenon or system of interest under conditions that are impossible at the moment. For example, what happens if clients start coming twice as often? We'd love to run this experiment, but it's not clear how to make them come more frequently. Or another example: what happens if we hire one more barber? What happens to our profit margin? We'd like to evaluate the risk before we take it.</p>
+<p>In this stage, assume that one of the masters fell sick. How will the values that we calculated in the previous stage change?</p>
+<h5 id="objectives">Objectives</h5>
+<p>Write a program that takes as input four numbers (separated by one space):</p>
+<ul>
+<li><span class="math-tex">\(s\)</span>, the average time in minutes between successive visitors,</li>
+<li><span class="math-tex">\(a\)</span>, <span class="math-tex">\(b\)</span>, the lower and upper boundaries for the service time distribution,</li>
+<li>and the number of barbers <span class="math-tex">\(k\)</span></li>
+</ul>
+<p>for <span class="math-tex">\(k-1\)</span> and <span class="math-tex">\(k\)</span> barbers, it should estimate</p>
+<ul>
+<li>the 95% quantile of the maximum waiting time,</li>
+<li>the average closing time delay,</li>
+<li>the probability that maximum number of visitors in line is greater that 5,</li>
+</ul>
+<p>Use 100000 Monte-Carlo simulations, and print the differences between the corresponding metrics on separate lines.</p>
+<h5 id="examples">Examples</h5>
+<p><strong>Example 1:</strong></p>
+<p>Input:</p>
+<pre><code class="language-no-highlight">40 20 60 3</code></pre>
+<p>Output:</p>
+<pre><code class="language-no-highlight">34.32429698564698
+4.733889516656486
+0.00369</code></pre>
+<p><strong>Example 2:</strong></p>
+<p>Input:</p>
+<pre><code class="language-no-highlight">25 20 50 2</code></pre>
+<p>Output:</p>
+<pre><code class="language-no-highlight">340.86530299192
+181.45820136637525
+0.5393100000000001</code></pre>
+<p><strong>Example 3:</strong></p>
+<p>Input:</p>
+<pre><code class="language-no-highlight">20 20 50 4</code></pre>
+<p>Output:</p>
+<pre><code class="language-no-highlight">15.981632932440839
+1.6875411716384328
+0.00272</code></pre>
+</div>

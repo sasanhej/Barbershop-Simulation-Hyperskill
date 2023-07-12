@@ -1,0 +1,54 @@
+<div class="step-text">
+<h5 id="description">Description</h5>
+<p>Your barbershop is open from 9 am, and the clients come at regular intervals of <span class="math-tex">\(m\)</span> minutes (the first client arrives precisely at 9 am); the first barber serves each visitor in <code class="java">s</code> minutes, and the second one does it in <span class="math-tex">\(t\)</span> minutes. When a new client comes, they go to an unoccupied barber. If they are both free, the client goes to the barber who is free for a more extended period of time; if both barbers are unoccupied for the same period of time, the client goes to the first master. If both barbers are busy, clients queue in line. At 4 pm, the barbershop closes. All those who come on that day before the closing time are served; no exceptions.</p>
+<p>Based on this information, compute the following quantities for every client:</p>
+<ol>
+<li>Arrival time: when did the client come to the barbershop?</li>
+<li>Waiting time: how long did they wait in line?</li>
+<li>Barber: the first one or the second one?</li>
+</ol>
+<p>To determine the waiting time in the queue and the barber for each new client, it is suitable to calculate the values <span class="math-tex">\(a_{1,i}\)</span> and <span class="math-tex">\(a_{2,i}\)</span>, where <span class="math-tex">\(a_{1,i}\)</span> is the number of minutes after 9 am when the first barber is available, assuming that only the first <span class="math-tex">\(i\)</span> clients will come on that day, and <span class="math-tex">\(a_{2,i}\)</span> is the same value for the second barber. For example, <span class="math-tex">\(a_{1,1} = s\)</span>, <span class="math-tex">\(a_{2,1} = 0\)</span>. When the <span class="math-tex">\(i+1\)</span>-th client arrives at the <span class="math-tex">\(t_{i+1}\)</span> time, based on <span class="math-tex">\(t_{i+1}\)</span>, <span class="math-tex">\(a_{1,i}\)</span>, and <span class="math-tex">\(a_{2,i}\)</span>, we can determine which barber will be available first, and how long the client will have to wait in line. Then calculate <span class="math-tex">\(a_{1,i+1}\)</span> and <span class="math-tex">\(a_{2,i+1}\)</span> and process the <span class="math-tex">\(i+2\)</span>-th client.</p>
+<h5 id="objectives">Objectives</h5>
+<p>Write a program that takes three numbers <span class="math-tex">\(m\)</span>, <span class="math-tex">\(s\)</span>, and <span class="math-tex">\(t\)</span> as input separated by a space, computes the arrival time, the waiting time, and the barber for every client who came before the closing time. Ensure the program prints this data for each client on a separate line in the order they arrive.</p>
+<p>Output format:</p>
+<p>If you've had <span class="math-tex">\(n\)</span> clients today, the output should consist of <span class="math-tex">\(n\)</span> lines, where the <span class="math-tex">\(i\)</span>-th line refers to the <span class="math-tex">\(i\)</span>-th client and has the form of <span class="math-tex">\(a\:w\:m\)</span> where:</p>
+<ul>
+<li><span class="math-tex">\(a\)</span> is the arrival time of the <span class="math-tex">\(i\)</span>-th visitor in minutes after 9:00 am,</li>
+<li><span class="math-tex">\(w\)</span> is their waiting time in minutes,</li>
+<li><span class="math-tex">\(m\)</span> is the barber, <code class="java">1</code> or <code class="java">2</code>.</li>
+</ul>
+<h5 id="examples">Examples</h5>
+<p><strong>Example 1:</strong></p>
+<p><em>Input:</em></p>
+<pre><code class="language-no-highlight">60 100 20</code></pre>
+<p><em>Output:</em></p>
+<pre><code class="language-no-highlight">0 0 1
+60 0 2
+120 0 2
+180 0 1
+240 0 2
+300 0 2
+360 0 1</code></pre>
+<p><strong>Example 2:</strong></p>
+<p><em>Input:</em></p>
+<pre><code class="language-no-highlight">25 55 65</code></pre>
+<p><em>Output:</em></p>
+<pre><code class="language-no-highlight">0 0 1
+25 0 2
+50 5 1
+75 15 2
+100 10 1
+125 30 2
+150 15 1
+175 45 1
+200 20 2
+225 50 1
+250 35 2
+275 55 1
+300 50 2
+325 60 1
+350 65 2
+375 65 1
+400 80 2</code></pre>
+
+</div>

@@ -1,0 +1,54 @@
+<div class="step-text">
+<h5 id="description">Description</h5>
+<p>Now that we have learned how to simulate the work of a barbershop, let's calculate some metrics! In this project, we will focus on the metrics related to visitors waiting time:</p>
+<ul>
+<li>the maximum waiting time: in our model, the visitor always waits to be served, but in real life, they may well leave if they realize that the waiting time will be quite long, so it is reasonable to understand how long the visitor may need to wait;</li>
+<li>the closing delay: it's great that all customers who come before the closing are served, but delaying the closing for a few hours is not very cool, right?</li>
+<li>the maximum number of people in line: nobody is going to wait forever, so if there are too many people, it will not be very convenient. If a client enters at the same time as another client gets served, then we will assume that the queue length has not increased. For example, when the first client arrived and immediately went to the barber, we assume that the line had zero length.</li>
+</ul>
+<p>The first two metrics are fairly easy to calculate, so let's focus on the third one. When a new client arrived, he increases the length by <span class="math-tex">\(1\)</span>, and it is decreased by <span class="math-tex">\(1\)</span>, when a client gets served. Thus, if <span class="math-tex">\(c_1, c_2, \dots, c_n\)</span> is the time-ordered sequence of all additions and subtractions, then the length of the line by the time of the event <span class="math-tex">\(c_i\)</span> is equal to <span class="math-tex">\(\sum_{j=1}^i c_j\)</span>, and we need to find such <code class="java">i</code> that this sum is maximum.</p>
+<h5 id="objectives">Objectives</h5>
+<p>Write a program that takes arrival and service times as input data about, computes the maximum waiting time (in minutes), the closing delay (in minutes after 4 pm), and the maximum number of people in line and prints them in separate lines.</p>
+<p><strong>Input format</strong></p>
+<p>The first line contains the number barbers <span class="math-tex">\(k\)</span> and the number clients <span class="math-tex">\(n\)</span> today. In the next <span class="math-tex">\(n\)</span> lines there are pairs <span class="math-tex">\(a_i\)</span> and <span class="math-tex">\(s_i\)</span>separated by a space, where <span class="math-tex">\(a_i\)</span> and <span class="math-tex">\(s_i\)</span> are arrival time (in minutes, after 9 am) and service time (in minutes) of the <span class="math-tex">\(i\)</span>-th visitor.</p>
+<h5 id="examples">Examples</h5>
+<p><strong>Example 1: </strong><em>example 1 from the previous stage</em></p>
+<p><em>Input:</em></p>
+<pre><code class="language-no-highlight">2 17
+0 55
+25 65
+50 55
+75 65
+100 55
+125 65
+150 55
+175 55
+200 65
+225 55
+250 65
+275 55
+300 65
+325 55
+350 65
+375 55
+400 65</code></pre>
+<p><em>Output:</em></p>
+<pre><code class="language-no-highlight">80
+125
+3</code></pre>
+<p><strong>Example 2: </strong><em>example 2 from the previous stage</em></p>
+<p><em>Input:</em></p>
+<pre><code class="language-no-highlight">4 8
+0 68
+10 78
+20 88
+30 98
+40 55
+50 65
+60 75
+70 85</code></pre>
+<p><em>Output:</em></p>
+<pre><code class="language-no-highlight">53
+0
+3</code></pre>
+</div>
